@@ -317,7 +317,7 @@ VOID ExecDll(PCHAR inputDll) {
 			ExecExportsByAddressTable(dllHandle);
 		}
 		else {
-			if (exportDirectory->AddressOfNames & exportDirectory->AddressOfNameOrdinals) {
+			if (exportDirectory->AddressOfNames && exportDirectory->AddressOfNameOrdinals) {
 				ExecExportsByName(dllHandle);
 			}
 			else if (exportDirectory->AddressOfNameOrdinals) {
