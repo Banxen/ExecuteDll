@@ -152,9 +152,18 @@ BOOL IsReflectiveDll(DWORD baseAddress, __out FunctionAddressPtr* reflectiveRout
 	}
 
 	dataDirectory = &(peHeader->OptionalHeader.DataDirectory[IMAGE_DIRECTORY_ENTRY_EXPORT]);
+	
+	if (dataDirectory == NULL) {
+		return FALSE;
+	}
 
 	if (dataDirectory->VirtualAddress) {
 		exportDirectory = (PIMAGE_EXPORT_DIRECTORY)RVAToFilePtr(baseAddress, dataDirectory->VirtualAddress);
+		
+		if (exportDirectory == NULL) {
+			printf("Export directory seems outside the contained sections!!");
+			return FALSE;
+		}
 
 		if (exportDirectory->AddressOfNames) {
 			ENT = (PDWORD)RVAToFilePtr(baseAddress, exportDirectory->AddressOfNames);
