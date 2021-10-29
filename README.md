@@ -1,3 +1,24 @@
-Executes 32bit dll files. Exports are handled automatically. Prints basic information and exception related information while executing.
+This tool is designed to assist in dll files execution. Use 32-bit version for 32-bit dlls and 64-bit version for 64-bit dlls. Exports are handled automatically. 
 
-As per observation the Cobaltrike beacon dll's DllMain routine address is available in eax register after the ReflectiveLoader export returns. I have used the same thing in my code for transferring code control flow.
+### Usage:
+
+1. Execute all exports in ExecuteDll.exe context 
+
+ExecuteDll.exe mydll.dll
+
+2. Parse and execute the exports using rundll32.exe
+
+ExecuteDll.exe mydll.dll --rundll32
+
+### Cobaltrike beacon dll's support:
+
+For 32-bit version of ExecuteDll.exe support is added for dlls where export name contains "ReflectiveLoader". Feel free to tweak.
+
+For 64-bit version of ExecuteDll.exe support is added for dlls where export name contains "ReflectiveLoader" but to execute the reflective loaded dll the "nop" sled has been added which need to be patched at assembly level or in the compiled binary with following code (Can't find any other way since the Microsoft compiler doesn't support raw assembly for 64-bit):
+
+```
+push 4
+pop rdx
+mov rcx, qword ptr [rsp+0x28] // rsp+0x28 contains the first argument(baseAddres) of main function. Offset to rsp may change based on code compilation.
+call rax
+```
