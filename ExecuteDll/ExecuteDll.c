@@ -6,7 +6,7 @@ typedef void (*FunctionAddressPtr)();
 
 #ifdef _WIN64
 	#define DWORD_32_64 DWORD64
-    #define FORMAT_STR "0x%08llx"
+    	#define FORMAT_STR "0x%08llx"
 #else
 	#define DWORD_32_64 DWORD
 	#define FORMAT_STR "0x%04x"
