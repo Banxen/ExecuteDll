@@ -10,7 +10,7 @@ ExecuteDll.exe mydll.dll
 
 ExecuteDll.exe mydll.dll --rundll32
 
-### Cobaltrike beacon dll's support:
+### Cobaltrike beacon dll support:
 
 For 32-bit version of ExecuteDll.exe support is added for dlls where export name contains "ReflectiveLoader". Feel free to tweak.
 
