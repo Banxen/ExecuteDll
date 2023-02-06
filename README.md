@@ -1,8 +1,8 @@
-This tool is designed to assist in dll files execution. Use 32-bit version for 32-bit dlls and 64-bit version for 64-bit dlls. Exports are handled automatically. 
+This tool is designed to assist in dll file execution. Use 32-bit version for 32-bit dll and 64-bit version for 64-bit dll. Exports are handled automatically. 
 
 ### Usage:
 
-1. Execute all exports in ExecuteDll.exe context 
+1. Execute all exports using ExecuteDll.exe 
 
 ExecuteDll.exe mydll.dll
 
